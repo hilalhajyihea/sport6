@@ -1,0 +1,166 @@
+:root {
+  --pitch-deep: #072010;
+  --pitch: #0f3d22;
+  --pitch-stripe: #14532d;
+  --gold: #e8c36a;
+  --cream: #f6f1e4;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Heebo", sans-serif;
+  color: var(--cream);
+  overflow: hidden;
+  background: var(--pitch-deep);
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 45% at 50% -10%, rgba(255, 236, 179, 0.16), transparent 55%),
+    linear-gradient(180deg, #020617 0%, #07150c 42%, var(--pitch-deep) 100%);
+}
+
+.pitch {
+  position: fixed;
+  inset: 18% 0 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--pitch) 0 12.5%,
+      var(--pitch-stripe) 12.5% 25%
+    );
+  box-shadow: inset 0 80px 80px -40px rgba(0, 0, 0, 0.45);
+}
+
+.pitch-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.floodlights .beam {
+  position: fixed;
+  top: -8%;
+  width: 38vw;
+  height: 70vh;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 244, 200, 0.16), rgba(255, 244, 200, 0.03) 55%, transparent);
+  filter: blur(8px);
+}
+
+.beam-right {
+  right: 6%;
+  transform: rotate(16deg);
+}
+
+.beam-left {
+  left: 6%;
+  transform: rotate(-16deg);
+}
+
+.vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.58) 100%);
+  pointer-events: none;
+}
+
+.hero {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.eyebrow {
+  letter-spacing: 0.35em;
+  font-size: 0.85rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: clamp(3.4rem, 12vw, 8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.55);
+}
+
+h1 span {
+  color: var(--gold);
+}
+
+.soon {
+  margin-top: 1.4rem;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  color: #fff;
+}
+
+.soon::before,
+.soon::after {
+  content: "";
+  display: inline-block;
+  width: 2.2rem;
+  height: 1px;
+  margin: 0 0.8rem 0.35rem;
+  background: var(--gold);
+  vertical-align: middle;
+}
+
+.ball {
+  width: 64px;
+  height: 64px;
+  margin-top: 2.4rem;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.45));
+  animation: float 4.5s ease-in-out infinite;
+}
+
+.ball svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 640px) {
+  .eyebrow {
+    letter-spacing: 0.22em;
+  }
+
+  .soon {
+    letter-spacing: 0.28em;
+  }
+
+  .soon::before,
+  .soon::after {
+    width: 1.2rem;
+  }
+}
