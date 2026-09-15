@@ -12,4 +12,4 @@
 
 - `DATABASE_URL` — מסד ברנדר
 - `SESSION_SECRET` — מחרוזת סודית להתחברות
-- `BLOB_READ_WRITE_TOKEN` — אחסון תמונות בורסל
+- `R2_ACCOUNT_ID` / `R2_ACCESS_KEY_ID` / `R2_SECRET_ACCESS_KEY` / `R2_BUCKET` / `R2_PUBLIC_URL` — תמונות בקלאודפלייר

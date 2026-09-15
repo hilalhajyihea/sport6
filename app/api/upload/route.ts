@@ -1,6 +1,6 @@
-import { put } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth";
+import { uploadToR2 } from "@/lib/r2";
 
 export const runtime = "nodejs";
 
@@ -12,12 +12,6 @@ export async function POST(request: Request) {
   if (!user.canAdd && !user.canEdit && user.role !== "admin") {
     return NextResponse.json({ error: "אין הרשאה להעלות תמונות" }, { status: 403 });
   }
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    return NextResponse.json(
-      { error: "חסר אחסון תמונות בורסל. יש ליצור Blob בפרויקט." },
-      { status: 500 }
-    );
-  }
 
   const form = await request.formData();
   const file = form.get("file");
@@ -25,10 +19,11 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "לא נבחר קובץ" }, { status: 400 });
   }
 
-  const safeName = file.name.replace(/[^\w.\-א-ת]+/g, "-");
-  const blob = await put(`sport6/${Date.now()}-${safeName}`, file, {
-    access: "public",
-    token: process.env.BLOB_READ_WRITE_TOKEN,
-  });
-  return NextResponse.json({ url: blob.url });
+  try {
+    const url = await uploadToR2(file);
+    return NextResponse.json({ url });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "העלאת התמונה נכשלה";
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }
