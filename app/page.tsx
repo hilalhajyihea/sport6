@@ -6,36 +6,48 @@ import { getFeaturedArticle, listArticlesByCategory, listCategories } from "@/li
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [featured, categories] = await Promise.all([getFeaturedArticle(), listCategories()]);
-  const sections = await Promise.all(
-    categories.map(async (category) => ({
-      category,
-      articles: await listArticlesByCategory(category.id, 4, featured?.id),
-    }))
-  );
+  try {
+    const [featured, categories] = await Promise.all([getFeaturedArticle(), listCategories()]);
+    const sections = await Promise.all(
+      categories.map(async (category) => ({
+        category,
+        articles: await listArticlesByCategory(category.id, 4, featured?.id),
+      }))
+    );
 
-  return (
-    <>
-      <SiteHeader current="home" />
-      <main className="wrap">
-        {featured ? (
-          <FeaturedStory article={featured} />
-        ) : (
-          <div className="empty">עדיין אין כתבות. היכנסו לניהול כדי לפרסם את הכתבה הראשונה.</div>
-        )}
-        {sections.map(({ category, articles }) => (
-          <section className="section" key={category.id}>
-            <div className="section-title">
-              <h2>
-                <Link href={`/category/${category.slug}`}>{category.name}</Link>
-              </h2>
-              <Link href={`/category/${category.slug}`}>לכל הכתבות</Link>
-            </div>
-            <ArticleGrid articles={articles} />
-          </section>
-        ))}
-      </main>
-      <SiteFooter />
-    </>
-  );
+    return (
+      <>
+        <SiteHeader current="home" />
+        <main className="wrap">
+          {featured ? (
+            <FeaturedStory article={featured} />
+          ) : (
+            <div className="empty">עדיין אין כתבות. היכנסו לניהול כדי לפרסם את הכתבה הראשונה.</div>
+          )}
+          {sections.map(({ category, articles }) => (
+            <section className="section" key={category.id}>
+              <div className="section-title">
+                <h2>
+                  <Link href={`/category/${category.slug}`}>{category.name}</Link>
+                </h2>
+                <Link href={`/category/${category.slug}`}>לכל הכתבות</Link>
+              </div>
+              <ArticleGrid articles={articles} />
+            </section>
+          ))}
+        </main>
+        <SiteFooter />
+      </>
+    );
+  } catch {
+    return (
+      <>
+        <SiteHeader current="home" />
+        <main className="wrap">
+          <div className="empty">לא הצלחנו להתחבר למסד כרגע. בדקו את החיבור ברנדר ואת המשתנה בורסל.</div>
+        </main>
+        <SiteFooter />
+      </>
+    );
+  }
 }
