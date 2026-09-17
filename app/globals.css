@@ -257,7 +257,7 @@ img {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
 }
 
@@ -276,6 +276,7 @@ img {
 
 .card-body {
   padding: 0.75rem;
+  text-align: center;
 }
 
 .card h3 {
@@ -320,6 +321,7 @@ img {
   color: var(--muted);
   font-size: 0.92rem;
   margin: 0 0 1rem;
+  text-align: center;
 }
 
 .article-body {
@@ -336,6 +338,7 @@ img {
 
 .gallery figure {
   margin: 0;
+  text-align: center;
 }
 
 .gallery img {

@@ -11,7 +11,7 @@ export default async function HomePage() {
     const sections = await Promise.all(
       categories.map(async (category) => ({
         category,
-        articles: await listArticlesByCategory(category.id, 4, featured?.id),
+        articles: await listArticlesByCategory(category.id, 3, featured?.id),
       }))
     );
 

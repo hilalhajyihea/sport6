@@ -130,7 +130,7 @@ export async function getFeaturedArticle() {
   return latest[0] ?? null;
 }
 
-export async function listArticlesByCategory(categoryId: number, limit = 4, excludeId?: number) {
+export async function listArticlesByCategory(categoryId: number, limit = 3, excludeId?: number) {
   await ensureSchema();
   const sql = getSql();
   if (excludeId) {
