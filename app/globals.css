@@ -36,6 +36,104 @@ img {
   display: block;
 }
 
+.ad-rail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  padding: 0.55rem 1.2rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.ad {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 72px;
+  padding: 0.7rem 0.9rem;
+  overflow: hidden;
+  color: #fff;
+}
+
+.ad-mark {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+  font-weight: 700;
+}
+
+.ad-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+}
+
+.ad-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ad-copy {
+  display: grid;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.ad-copy strong {
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.ad-copy em {
+  font-style: normal;
+  font-size: 0.82rem;
+  opacity: 0.88;
+}
+
+.ad-cta {
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.ad-light {
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 214, 120, 0.45), transparent 42%),
+    linear-gradient(115deg, #1a1408 0%, #3b2a10 45%, #6b4a18 100%);
+  color: #ffe9b0;
+}
+
+.ad-light .ad-cta {
+  background: #f3c56a;
+  color: #241a08;
+  border-color: transparent;
+}
+
+.ad-pitch {
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0 12%, transparent 12% 24%),
+    linear-gradient(120deg, #052e16 0%, #14532d 55%, #0b3b1e 100%);
+}
+
+.ad-pitch .ad-cta {
+  background: #fff;
+  color: #14532d;
+  border-color: transparent;
+}
+
+.ad:hover .ad-cta {
+  transform: translateX(-2px);
+}
+
 .site-header {
   background: linear-gradient(180deg, rgba(11, 46, 24, 0.88), rgba(11, 46, 24, 0.94)),
     url("/stadium.jpg") center 40% / cover no-repeat;
@@ -391,12 +489,17 @@ textarea {
 }
 
 @media (max-width: 900px) {
+  .ad-rail,
   .featured,
   .grid,
   .gallery,
   .list-row,
   .thumb {
     grid-template-columns: 1fr;
+  }
+
+  .ad-cta {
+    margin-right: 0;
   }
 
   .featured img,
