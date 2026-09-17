@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArticleGrid, FeaturedStory } from "@/components/ArticleCards";
-import { CubeAds, OlpanBanner, PitchBanner, SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { ClickBanner, CubeAds, OlpanBanner, PitchBanner, SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { getFeaturedArticle, listArticlesByCategory, listCategories } from "@/lib/articles";
 
 export const dynamic = "force-dynamic";
@@ -36,6 +36,7 @@ export default async function HomePage() {
               </div>
               <ArticleGrid articles={articles} />
               {category.slug === "adults" ? <PitchBanner /> : null}
+              {category.slug === "youth" ? <ClickBanner /> : null}
             </section>
           ))}
         </main>

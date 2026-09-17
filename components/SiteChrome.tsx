@@ -129,6 +129,68 @@ export function PitchBanner() {
   );
 }
 
+export function ClickBanner() {
+  return (
+    <a
+      className="ad-banner ad-banner-click"
+      href="https://websitebyclick.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span className="click-scene" aria-hidden="true">
+        <span className="click-grid" />
+        <svg className="click-windows" viewBox="0 0 260 170">
+          <defs>
+            <linearGradient id="clickGlass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#1c2740" />
+              <stop offset="1" stopColor="#0f172a" />
+            </linearGradient>
+          </defs>
+          <g opacity="0.55">
+            <rect x="18" y="18" width="148" height="96" rx="8" fill="#152033" stroke="#3b4d72" />
+            <rect x="18" y="18" width="148" height="18" rx="8" fill="#24324c" />
+            <circle cx="30" cy="27" r="3.2" fill="#f07171" />
+            <circle cx="40" cy="27" r="3.2" fill="#f0c36a" />
+            <circle cx="50" cy="27" r="3.2" fill="#6fd08a" />
+          </g>
+          <g>
+            <rect x="52" y="42" width="168" height="110" rx="9" fill="url(#clickGlass)" stroke="#7aa2ff" strokeOpacity="0.45" />
+            <rect x="52" y="42" width="168" height="20" rx="9" fill="#24385f" />
+            <circle cx="66" cy="52" r="3.4" fill="#f07171" />
+            <circle cx="77" cy="52" r="3.4" fill="#f0c36a" />
+            <circle cx="88" cy="52" r="3.4" fill="#6fd08a" />
+            <rect x="64" y="74" width="72" height="8" rx="2" fill="#dbe7ff" opacity="0.9" />
+            <rect x="64" y="88" width="108" height="6" rx="2" fill="#8aa4d6" opacity="0.7" />
+            <rect x="64" y="100" width="96" height="6" rx="2" fill="#8aa4d6" opacity="0.45" />
+            <rect x="64" y="118" width="46" height="16" rx="4" fill="#f0c36a" />
+            <rect x="148" y="76" width="54" height="54" rx="6" fill="#1b2b48" stroke="#7aa2ff" strokeOpacity="0.3" />
+            <path d="M162 93h26M162 103h18M162 113h22" stroke="#8aa4d6" strokeWidth="3" strokeLinecap="round" />
+          </g>
+        </svg>
+        <svg className="click-cursor" viewBox="0 0 72 72">
+          <path
+            d="M14 8 18 52 30 40 42 66 50 62 38 36 56 36Z"
+            fill="#fff"
+            stroke="#111"
+            strokeWidth="3"
+            strokeLinejoin="round"
+          />
+          <circle cx="54" cy="22" r="10" fill="none" stroke="#f0c36a" strokeWidth="3" opacity="0.9" />
+          <circle cx="54" cy="22" r="16" fill="none" stroke="#f0c36a" strokeWidth="2" opacity="0.35" />
+        </svg>
+        <span className="click-shade" />
+      </span>
+      <span className="ad-banner-mark">פרסומת</span>
+      <span className="ad-banner-body">
+        <span className="ad-banner-kicker">אתר בקליק</span>
+        <strong>רוצה אתר אינטרנט לעסק שלך?</strong>
+        <span className="ad-banner-sub">דומיין ועיצוב כלולים · דברו איתנו בוואטסאפ</span>
+      </span>
+      <span className="ad-banner-cta">לחבילות</span>
+    </a>
+  );
+}
+
 export function CubeAds() {
   return (
     <aside className="ad-cubes" aria-label="פרסומות">
