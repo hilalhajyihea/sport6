@@ -152,63 +152,80 @@ img {
 .ad-cubes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin: 1.2rem 0 0.4rem;
+  gap: 0.7rem;
+  margin: 1.1rem 0 0.2rem;
 }
 
 .ad-cube {
   position: relative;
-  aspect-ratio: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 0.28rem;
-  padding: 1.1rem;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 92px;
+  padding: 0.7rem 0.75rem 0.7rem 0.65rem;
   overflow: hidden;
   color: #fff;
 }
 
 .ad-cube-mark {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  opacity: 0.5;
+  top: 6px;
+  left: 8px;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  opacity: 0.45;
   font-weight: 700;
+}
+
+.ad-cube-icon {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  opacity: 0.92;
+}
+
+.ad-cube-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ad-cube-copy {
+  display: grid;
+  gap: 0.08rem;
+  min-width: 0;
 }
 
 .ad-cube-kicker {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  opacity: 0.78;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
 }
 
 .ad-cube strong {
-  font-size: 1.22rem;
+  font-size: 0.98rem;
   font-weight: 900;
   line-height: 1.15;
 }
 
 .ad-cube-sub {
-  font-size: 0.88rem;
-  opacity: 0.86;
+  font-size: 0.78rem;
+  opacity: 0.82;
 }
 
 .ad-cube-cta {
-  margin-top: 0.55rem;
-  align-self: start;
-  padding: 0.4rem 0.75rem;
-  font-size: 0.8rem;
+  margin-right: auto;
+  padding: 0.32rem 0.6rem;
+  font-size: 0.72rem;
   font-weight: 800;
+  white-space: nowrap;
 }
 
 .ad-cube-law {
-  background:
-    radial-gradient(circle at 100% 0%, rgba(201, 162, 74, 0.22), transparent 42%),
-    #10141c;
-  box-shadow: inset 0 0 0 1px rgba(201, 162, 74, 0.28);
+  background: #10141c;
+  color: #f3e6c4;
+  box-shadow: inset 0 0 0 1px rgba(201, 162, 74, 0.35);
 }
 
 .ad-cube-law .ad-cube-cta {
@@ -218,9 +235,19 @@ img {
 
 .ad-cube-rakez {
   background:
-    radial-gradient(circle at 0 100%, rgba(255, 255, 255, 0.08), transparent 46%),
-    #1c1410;
-  box-shadow: inset 0 0 0 1px rgba(232, 196, 140, 0.22);
+    repeating-linear-gradient(
+      90deg,
+      #8a1c24 0 5px,
+      #f4f4f4 5px 9px,
+      #1d4a8c 9px 14px,
+      #1a1210 14px 20px
+    ),
+    #1a1210;
+  background-size: 20px 100%, auto;
+  background-repeat: no-repeat, no-repeat;
+  background-position: right, center;
+  color: #f6e6d2;
+  box-shadow: inset 0 0 0 1px rgba(232, 196, 140, 0.28);
 }
 
 .ad-cube-rakez .ad-cube-cta {
@@ -229,15 +256,14 @@ img {
 }
 
 .ad-cube-sami {
-  background:
-    radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.08), transparent 48%),
-    #14181f;
-  box-shadow: inset 0 0 0 1px rgba(210, 220, 230, 0.2);
+  background: #1a1518;
+  color: #f0e6ea;
+  box-shadow: inset 0 0 0 1px rgba(214, 168, 184, 0.28);
 }
 
 .ad-cube-sami .ad-cube-cta {
-  background: #eef2f6;
-  color: #14181f;
+  background: #d6a8b8;
+  color: #1a1518;
 }
 
 .ad-cube:hover .ad-cube-cta {
@@ -613,11 +639,16 @@ textarea {
   }
 
   .ad-cube {
-    padding: 0.8rem;
+    padding: 0.65rem 0.55rem;
+    min-height: 86px;
+  }
+
+  .ad-cube-cta {
+    display: none;
   }
 
   .ad-cube strong {
-    font-size: 1rem;
+    font-size: 0.86rem;
   }
 
   .featured,
