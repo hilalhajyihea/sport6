@@ -10,16 +10,32 @@ export type ImageInput = {
   url: string;
   caption: string;
   isMain: boolean;
+  focusX: number;
+  focusY: number;
 };
 
 function parseImages(raw: string): ImageInput[] {
   try {
     const parsed = JSON.parse(raw) as ImageInput[];
     if (!Array.isArray(parsed)) return [];
-    return parsed.filter((item) => item.url);
+    return parsed
+      .filter((item) => item.url)
+      .map((item) => ({
+        url: item.url,
+        caption: item.caption || "",
+        isMain: Boolean(item.isMain),
+        focusX: clampFocus(item.focusX, 50),
+        focusY: clampFocus(item.focusY, 0),
+      }));
   } catch {
     return [];
   }
+}
+
+function clampFocus(value: number, fallback: number) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.min(100, Math.max(0, n));
 }
 
 export async function saveArticle(formData: FormData) {
@@ -98,9 +114,11 @@ async function insertImages(articleId: number, images: ImageInput[]) {
   for (const [index, image] of images.entries()) {
     const isMain = !mainSet && (image.isMain || index === 0);
     if (isMain) mainSet = true;
+    const focusX = Number.isFinite(image.focusX) ? image.focusX : 50;
+    const focusY = Number.isFinite(image.focusY) ? image.focusY : 0;
     await sql`
-      INSERT INTO article_images (article_id, url, caption, sort_order, is_main)
-      VALUES (${articleId}, ${image.url}, ${image.caption || null}, ${index}, ${isMain})
+      INSERT INTO article_images (article_id, url, caption, sort_order, is_main, focus_x, focus_y)
+      VALUES (${articleId}, ${image.url}, ${image.caption || null}, ${index}, ${isMain}, ${focusX}, ${focusY})
     `;
   }
 }

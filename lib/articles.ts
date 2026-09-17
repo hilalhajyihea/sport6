@@ -14,6 +14,8 @@ export type ArticleImage = {
   caption: string | null;
   sort_order: number;
   is_main: boolean;
+  focus_x: number;
+  focus_y: number;
 };
 
 export type ArticleCard = {
@@ -29,6 +31,8 @@ export type ArticleCard = {
   category_name: string;
   category_slug: string;
   main_image: string | null;
+  main_focus_x: number | null;
+  main_focus_y: number | null;
 };
 
 export type ArticleDetail = ArticleCard & {
@@ -71,7 +75,19 @@ export async function getFeaturedArticle() {
         WHERE article_id = a.id
         ORDER BY is_main DESC, sort_order ASC, id ASC
         LIMIT 1
-      ) AS main_image
+      ) AS main_image,
+      (
+        SELECT focus_x FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_x,
+      (
+        SELECT focus_y FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_y
     FROM articles a
     JOIN users u ON u.id = a.author_id
     JOIN categories c ON c.id = a.category_id
@@ -92,7 +108,19 @@ export async function getFeaturedArticle() {
         WHERE article_id = a.id
         ORDER BY is_main DESC, sort_order ASC, id ASC
         LIMIT 1
-      ) AS main_image
+      ) AS main_image,
+      (
+        SELECT focus_x FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_x,
+      (
+        SELECT focus_y FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_y
     FROM articles a
     JOIN users u ON u.id = a.author_id
     JOIN categories c ON c.id = a.category_id
@@ -117,7 +145,19 @@ export async function listArticlesByCategory(categoryId: number, limit = 4, excl
           WHERE article_id = a.id
           ORDER BY is_main DESC, sort_order ASC, id ASC
           LIMIT 1
-        ) AS main_image
+        ) AS main_image,
+        (
+          SELECT focus_x FROM article_images
+          WHERE article_id = a.id
+          ORDER BY is_main DESC, sort_order ASC, id ASC
+          LIMIT 1
+        ) AS main_focus_x,
+        (
+          SELECT focus_y FROM article_images
+          WHERE article_id = a.id
+          ORDER BY is_main DESC, sort_order ASC, id ASC
+          LIMIT 1
+        ) AS main_focus_y
       FROM articles a
       JOIN users u ON u.id = a.author_id
       JOIN categories c ON c.id = a.category_id
@@ -137,7 +177,19 @@ export async function listArticlesByCategory(categoryId: number, limit = 4, excl
         WHERE article_id = a.id
         ORDER BY is_main DESC, sort_order ASC, id ASC
         LIMIT 1
-      ) AS main_image
+      ) AS main_image,
+      (
+        SELECT focus_x FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_x,
+      (
+        SELECT focus_y FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_y
     FROM articles a
     JOIN users u ON u.id = a.author_id
     JOIN categories c ON c.id = a.category_id
@@ -161,7 +213,19 @@ export async function getArticle(id: number) {
         WHERE article_id = a.id
         ORDER BY is_main DESC, sort_order ASC, id ASC
         LIMIT 1
-      ) AS main_image
+      ) AS main_image,
+      (
+        SELECT focus_x FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_x,
+      (
+        SELECT focus_y FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_y
     FROM articles a
     JOIN users u ON u.id = a.author_id
     JOIN categories c ON c.id = a.category_id
@@ -171,7 +235,7 @@ export async function getArticle(id: number) {
   const article = rows[0];
   if (!article) return null;
   const images = await sql<ArticleImage[]>`
-    SELECT id, article_id, url, caption, sort_order, is_main
+    SELECT id, article_id, url, caption, sort_order, is_main, focus_x, focus_y
     FROM article_images
     WHERE article_id = ${id}
     ORDER BY is_main DESC, sort_order ASC, id ASC
@@ -194,7 +258,19 @@ export async function listArticlesForAdmin(authorId?: number) {
           WHERE article_id = a.id
           ORDER BY is_main DESC, sort_order ASC, id ASC
           LIMIT 1
-        ) AS main_image
+        ) AS main_image,
+        (
+          SELECT focus_x FROM article_images
+          WHERE article_id = a.id
+          ORDER BY is_main DESC, sort_order ASC, id ASC
+          LIMIT 1
+        ) AS main_focus_x,
+        (
+          SELECT focus_y FROM article_images
+          WHERE article_id = a.id
+          ORDER BY is_main DESC, sort_order ASC, id ASC
+          LIMIT 1
+        ) AS main_focus_y
       FROM articles a
       JOIN users u ON u.id = a.author_id
       JOIN categories c ON c.id = a.category_id
@@ -213,7 +289,19 @@ export async function listArticlesForAdmin(authorId?: number) {
         WHERE article_id = a.id
         ORDER BY is_main DESC, sort_order ASC, id ASC
         LIMIT 1
-      ) AS main_image
+      ) AS main_image,
+      (
+        SELECT focus_x FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_x,
+      (
+        SELECT focus_y FROM article_images
+        WHERE article_id = a.id
+        ORDER BY is_main DESC, sort_order ASC, id ASC
+        LIMIT 1
+      ) AS main_focus_y
     FROM articles a
     JOIN users u ON u.id = a.author_id
     JOIN categories c ON c.id = a.category_id

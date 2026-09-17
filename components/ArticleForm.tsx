@@ -1,11 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import ImageFocusEditor from "@/components/ImageFocusEditor";
 import type { ArticleDetail } from "@/lib/articles";
 import type { Category } from "@/lib/articles";
 import { saveArticle } from "@/lib/actions-articles";
 
-type ImageItem = { url: string; caption: string; isMain: boolean };
+type ImageItem = {
+  url: string;
+  caption: string;
+  isMain: boolean;
+  focusX: number;
+  focusY: number;
+};
 
 export default function ArticleForm({
   categories,
@@ -23,6 +30,8 @@ export default function ArticleForm({
       url: image.url,
       caption: image.caption ?? "",
       isMain: image.is_main,
+      focusX: Number(image.focus_x ?? 50),
+      focusY: Number(image.focus_y ?? 0),
     })) ?? []
   );
 
@@ -38,7 +47,7 @@ export default function ArticleForm({
         const res = await fetch("/api/upload", { method: "POST", body: data });
         const json = await res.json();
         if (!res.ok) throw new Error(json.error || "העלאה נכשלה");
-        uploaded.push({ url: json.url, caption: "", isMain: false });
+        uploaded.push({ url: json.url, caption: "", isMain: false, focusX: 50, focusY: 0 });
       }
       setImages((current) => {
         const next = [...current, ...uploaded];
@@ -93,14 +102,13 @@ export default function ArticleForm({
 
       <div>
         <strong>תמונות</strong>
-        <p className="meta">אפשר להעלות כמה שרוצים. סמנו תמונה ראשית, וכתבו כיתוב מתחת לכל אחת.</p>
+        <p className="meta">גררו את התמונה במסגרת עד שהפנים במקום. אותו מיקום נשמר לדף הבית ולכתבה.</p>
         <input type="file" accept="image/*" multiple disabled={busy} onChange={(e) => uploadFiles(e.target.files)} />
         {busy ? <p>מעלה תמונות…</p> : null}
         <div className="thumbs">
           {images.map((image, index) => (
             <div className="thumb" key={`${image.url}-${index}`}>
-              <img src={image.url} alt="" />
-              <div className="form-grid">
+              <div className="thumb-tools">
                 <input
                   value={image.caption}
                   placeholder="כיתוב לתמונה"
@@ -121,14 +129,22 @@ export default function ArticleForm({
                   />
                   תמונה ראשית
                 </label>
+                <button
+                  type="button"
+                  className="danger"
+                  onClick={() => setImages((current) => current.filter((_, i) => i !== index))}
+                >
+                  מחק
+                </button>
               </div>
-              <button
-                type="button"
-                className="danger"
-                onClick={() => setImages((current) => current.filter((_, i) => i !== index))}
-              >
-                מחק
-              </button>
+              <ImageFocusEditor
+                src={image.url}
+                focusX={image.focusX}
+                focusY={image.focusY}
+                onChange={(focusX, focusY) =>
+                  setImages((current) => current.map((item, i) => (i === index ? { ...item, focusX, focusY } : item)))
+                }
+              />
             </div>
           ))}
         </div>

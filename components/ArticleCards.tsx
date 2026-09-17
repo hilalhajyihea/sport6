@@ -1,12 +1,16 @@
 import Link from "next/link";
 import type { ArticleCard } from "@/lib/articles";
-import { excerpt, formatDate } from "@/lib/format";
+import { excerpt, focusStyle, formatDate } from "@/lib/format";
 
 export function FeaturedStory({ article }: { article: ArticleCard }) {
   return (
     <Link href={`/article/${article.id}`} className="featured">
       {article.main_image ? (
-        <img src={article.main_image} alt={article.title} />
+        <img
+          src={article.main_image}
+          alt={article.title}
+          style={focusStyle(article.main_focus_x, article.main_focus_y)}
+        />
       ) : (
         <div className="ph" style={{ height: 360 }} />
       )}
@@ -31,7 +35,11 @@ export function ArticleGrid({ articles }: { articles: ArticleCard[] }) {
     <div className="grid">
       {articles.map((article) => (
         <Link href={`/article/${article.id}`} className="card" key={article.id}>
-          {article.main_image ? <img src={article.main_image} alt="" /> : <div className="ph" />}
+          {article.main_image ? (
+            <img src={article.main_image} alt="" style={focusStyle(article.main_focus_x, article.main_focus_y)} />
+          ) : (
+            <div className="ph" />
+          )}
           <div className="card-body">
             <h3>{article.title}</h3>
             <p className="meta">

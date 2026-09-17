@@ -93,4 +93,6 @@ async function migrate() {
       ('youth', 'כדורגל טייבה ילדים ונוער', 2)
     ON CONFLICT (slug) DO NOTHING
   `;
+  await sql`ALTER TABLE article_images ADD COLUMN IF NOT EXISTS focus_x DOUBLE PRECISION NOT NULL DEFAULT 50`;
+  await sql`ALTER TABLE article_images ADD COLUMN IF NOT EXISTS focus_y DOUBLE PRECISION NOT NULL DEFAULT 0`;
 }

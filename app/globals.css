@@ -98,7 +98,6 @@ img {
   width: 100%;
   height: 360px;
   object-fit: cover;
-  object-position: top;
 }
 
 .kicker {
@@ -159,7 +158,6 @@ img {
   width: 100%;
   height: 150px;
   object-fit: cover;
-  object-position: top;
   background: #dfe7e1;
 }
 
@@ -200,10 +198,8 @@ img {
 
 .article-hero {
   width: 100%;
-  height: auto;
-  max-height: none;
-  object-fit: contain;
-  object-position: top;
+  height: 520px;
+  object-fit: cover;
   margin: 0.6rem 0 0.4rem;
 }
 
@@ -231,9 +227,8 @@ img {
 
 .gallery img {
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: top;
+  height: 260px;
+  object-fit: cover;
 }
 
 .site-footer {
@@ -349,18 +344,50 @@ textarea {
 
 .thumb {
   display: grid;
-  grid-template-columns: 120px 1fr auto;
-  gap: 0.7rem;
-  align-items: start;
+  gap: 0.8rem;
   border: 1px solid var(--line);
-  padding: 0.5rem;
+  padding: 0.7rem;
 }
 
-.thumb img {
-  width: 120px;
-  height: 80px;
+.thumb-tools {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+.focus-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+}
+
+.focus-frame {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #111;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.focus-frame:active {
+  cursor: grabbing;
+}
+
+.focus-home {
+  height: 160px;
+}
+
+.focus-article {
+  height: 240px;
+}
+
+.focus-frame img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: top;
+  pointer-events: none;
 }
 
 @media (max-width: 900px) {
@@ -372,7 +399,14 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .featured img {
+  .featured img,
+  .article-hero,
+  .gallery img {
     height: 220px;
+  }
+
+  .focus-row,
+  .thumb-tools {
+    grid-template-columns: 1fr;
   }
 }

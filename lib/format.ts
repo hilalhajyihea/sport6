@@ -26,3 +26,7 @@ export function excerpt(text: string, length = 180) {
   if (clean.length <= length) return clean;
   return `${clean.slice(0, length).trim()}…`;
 }
+
+export function focusStyle(x?: number | null, y?: number | null) {
+  return { objectPosition: `${Number.isFinite(Number(x)) ? Number(x) : 50}% ${Number.isFinite(Number(y)) ? Number(y) : 0}%` };
+}

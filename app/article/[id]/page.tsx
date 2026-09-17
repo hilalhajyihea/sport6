@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { getArticle } from "@/lib/articles";
-import { bodyToHtml, formatDate } from "@/lib/format";
+import { bodyToHtml, focusStyle, formatDate } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -25,7 +25,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
           </p>
           {main ? (
             <>
-              <img className="article-hero" src={main.url} alt={main.caption || article.title} />
+              <img
+                className="article-hero"
+                src={main.url}
+                alt={main.caption || article.title}
+                style={focusStyle(main.focus_x, main.focus_y)}
+              />
               {main.caption ? <p className="caption">{main.caption}</p> : null}
             </>
           ) : null}
@@ -34,7 +39,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
             <div className="gallery">
               {gallery.map((image) => (
                 <figure key={image.id}>
-                  <img src={image.url} alt={image.caption || ""} />
+                  <img src={image.url} alt={image.caption || ""} style={focusStyle(image.focus_x, image.focus_y)} />
                   {image.caption ? <figcaption className="caption">{image.caption}</figcaption> : null}
                 </figure>
               ))}
