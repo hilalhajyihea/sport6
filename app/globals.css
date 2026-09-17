@@ -440,12 +440,26 @@ img {
   margin: 0 0 1rem;
 }
 
+.article-hero {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  margin: 0.6rem 0 0.4rem;
+}
+
+.caption {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
 .photo-stack {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.15rem;
-  margin: 0.9rem 0 1.5rem;
+  margin: 1.6rem 0 0;
 }
 
 .photo-stack figure {
@@ -463,11 +477,8 @@ img {
   margin: 0 auto;
 }
 
-.caption {
-  color: var(--muted);
-  font-size: 0.92rem;
+.photo-stack .caption {
   margin: 0.45rem 0 0;
-  text-align: center;
 }
 
 .article-body {
@@ -669,7 +680,8 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .featured img {
+  .featured img,
+  .article-hero {
     height: 220px;
   }
 

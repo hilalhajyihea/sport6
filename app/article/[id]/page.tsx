@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { getArticle } from "@/lib/articles";
-import { bodyToHtml, formatDate } from "@/lib/format";
+import { bodyToHtml, focusStyle, formatDate } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
 
@@ -9,6 +9,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
   const { id } = await params;
   const article = await getArticle(Number(id));
   if (!article) notFound();
+  const main = article.images.find((image) => image.is_main) ?? article.images[0];
+  const gallery = article.images.filter((image) => !main || image.id !== main.id);
 
   return (
     <>
@@ -21,9 +23,21 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
           <p className="meta">
             {article.author_name} · {formatDate(article.created_at)}
           </p>
-          {article.images.length ? (
+          {main ? (
+            <>
+              <img
+                className="article-hero"
+                src={main.url}
+                alt={main.caption || article.title}
+                style={focusStyle(main.focus_x, main.focus_y)}
+              />
+              {main.caption ? <p className="caption">{main.caption}</p> : null}
+            </>
+          ) : null}
+          <div className="article-body" dangerouslySetInnerHTML={{ __html: bodyToHtml(article.body) }} />
+          {gallery.length ? (
             <div className="photo-stack">
-              {article.images.map((image) => (
+              {gallery.map((image) => (
                 <figure key={image.id}>
                   <img src={image.url} alt={image.caption || article.title} />
                   {image.caption ? <figcaption className="caption">{image.caption}</figcaption> : null}
@@ -31,7 +45,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
               ))}
             </div>
           ) : null}
-          <div className="article-body" dangerouslySetInnerHTML={{ __html: bodyToHtml(article.body) }} />
         </article>
       </main>
       <SiteFooter />
