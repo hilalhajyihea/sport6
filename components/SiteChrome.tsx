@@ -38,8 +38,9 @@ export function OlpanBanner() {
       target="_blank"
       rel="noopener noreferrer"
     >
+      <img className="ad-banner-photo" src="/olpan-hero.png" alt="" />
+      <span className="ad-banner-shade" aria-hidden="true" />
       <span className="ad-banner-mark">פרסומת</span>
-      <span className="ad-banner-glow" aria-hidden="true" />
       <span className="ad-banner-body">
         <span className="ad-banner-kicker">טייבה · כביש 444</span>
         <strong>אולפן התאורה</strong>

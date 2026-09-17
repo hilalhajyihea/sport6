@@ -97,32 +97,41 @@ img {
 }
 
 .ad-banner-light {
-  background: #16110a;
-  color: #f6e7c3;
-  box-shadow: inset 0 0 0 1px rgba(243, 197, 106, 0.28);
+  min-height: 210px;
+  background: #0a0a0a;
+  color: #fff8ea;
+  box-shadow: inset 0 0 0 1px rgba(255, 214, 140, 0.18);
 }
 
-.ad-banner-glow {
+.ad-banner-photo {
   position: absolute;
-  inset: -40% auto auto -8%;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(255, 214, 120, 0.38), transparent 68%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 55% 32%;
+  z-index: 0;
+}
+
+.ad-banner-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(to left, rgba(8, 6, 4, 0.82) 0%, rgba(8, 6, 4, 0.42) 48%, rgba(8, 6, 4, 0.12) 100%);
   pointer-events: none;
 }
 
-.ad-banner-light::after {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 42%;
-  background: linear-gradient(90deg, transparent, rgba(243, 197, 106, 0.07));
-  pointer-events: none;
+.ad-banner-light .ad-banner-body,
+.ad-banner-light .ad-banner-cta,
+.ad-banner-light .ad-banner-mark {
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 .ad-banner-light .ad-banner-cta {
   background: #f3c56a;
   color: #1a1408;
+  text-shadow: none;
 }
 
 .ad-banner-pitch {
@@ -632,6 +641,10 @@ textarea {
     flex-wrap: wrap;
     min-height: 0;
     padding: 1.1rem;
+  }
+
+  .ad-banner-light {
+    min-height: 180px;
   }
 
   .ad-banner-cta {
