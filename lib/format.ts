@@ -21,6 +21,16 @@ export function formatDate(value: string | Date) {
   });
 }
 
+export function formatDateTime(value: string | Date) {
+  return new Date(value).toLocaleString("he-IL", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
 export function excerpt(text: string, length = 180) {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length <= length) return clean;

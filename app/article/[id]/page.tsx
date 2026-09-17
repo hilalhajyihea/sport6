@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
+import { Comments } from "@/components/Comments";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { getArticle } from "@/lib/articles";
+import { getSession, isAdmin } from "@/lib/auth";
+import { listComments } from "@/lib/comments";
 import { bodyToHtml, focusStyle, formatDate } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
@@ -11,6 +14,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
   if (!article) notFound();
   const main = article.images.find((image) => image.is_main) ?? article.images[0];
   const gallery = article.images.filter((image) => !main || image.id !== main.id);
+  const comments = await listComments(article.id);
+  const canModerate = isAdmin(await getSession());
 
   return (
     <>
@@ -46,6 +51,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
             </div>
           ) : null}
         </article>
+        <Comments articleId={article.id} comments={comments} canModerate={canModerate} />
       </main>
       <SiteFooter />
     </>

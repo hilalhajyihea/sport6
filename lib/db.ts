@@ -95,4 +95,14 @@ async function migrate() {
   `;
   await sql`ALTER TABLE article_images ADD COLUMN IF NOT EXISTS focus_x DOUBLE PRECISION NOT NULL DEFAULT 50`;
   await sql`ALTER TABLE article_images ADD COLUMN IF NOT EXISTS focus_y DOUBLE PRECISION NOT NULL DEFAULT 0`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS article_comments (
+      id SERIAL PRIMARY KEY,
+      article_id INT NOT NULL REFERENCES articles(id) ON DELETE CASCADE,
+      author_name TEXT NOT NULL,
+      body TEXT NOT NULL,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS article_comments_article_idx ON article_comments (article_id, created_at)`;
 }
