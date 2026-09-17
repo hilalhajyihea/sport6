@@ -135,23 +135,85 @@ img {
 }
 
 .ad-banner-pitch {
+  min-height: 198px;
   margin-top: 1.4rem;
-  background: #072010;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: #04150c;
+  color: #f4fff6;
+  box-shadow: inset 0 0 0 1px rgba(214, 255, 214, 0.12);
 }
 
-.ad-banner-lines {
+.pitch-scene {
   position: absolute;
   inset: 0;
-  background:
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 11%, transparent 11% 22%),
-    radial-gradient(ellipse at 85% 0%, rgba(255, 236, 179, 0.18), transparent 46%);
+  z-index: 0;
+  overflow: hidden;
   pointer-events: none;
 }
 
+.pitch-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 18% -10%, rgba(255, 236, 180, 0.28), transparent 42%),
+    radial-gradient(ellipse at 82% -8%, rgba(255, 236, 180, 0.2), transparent 40%),
+    linear-gradient(#06170d 0%, #082214 46%, #0a2c18 100%);
+}
+
+.pitch-flood {
+  position: absolute;
+  top: -18%;
+  width: 46%;
+  height: 78%;
+  background: radial-gradient(ellipse at top, rgba(255, 244, 210, 0.34), transparent 68%);
+  mix-blend-mode: screen;
+}
+
+.pitch-flood-a {
+  left: -6%;
+}
+
+.pitch-flood-b {
+  right: -4%;
+}
+
+.pitch-field {
+  position: absolute;
+  left: -2%;
+  width: 62%;
+  bottom: -34%;
+  height: 168%;
+  transform: perspective(760px) rotateX(64deg);
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.4));
+}
+
+.pitch-ball {
+  position: absolute;
+  left: 3.5%;
+  bottom: 9%;
+  width: 96px;
+  height: 96px;
+  z-index: 1;
+  filter: drop-shadow(10px 16px 12px rgba(0, 0, 0, 0.46));
+}
+
+.pitch-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to left, rgba(4, 18, 10, 0.9) 0%, rgba(4, 18, 10, 0.48) 44%, rgba(4, 18, 10, 0.08) 72%);
+}
+
+.ad-banner-pitch .ad-banner-body,
+.ad-banner-pitch .ad-banner-cta,
+.ad-banner-pitch .ad-banner-mark {
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.42);
+}
+
 .ad-banner-pitch .ad-banner-cta {
-  background: #fff;
-  color: #0f3d22;
+  background: linear-gradient(#f6d37a, #c9a24a);
+  color: #14240f;
+  text-shadow: none;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
 }
 
 .ad-banner:hover .ad-banner-cta {
@@ -654,6 +716,21 @@ textarea {
 
   .ad-banner-light {
     min-height: 180px;
+  }
+
+  .ad-banner-pitch {
+    min-height: 168px;
+  }
+
+  .pitch-ball {
+    width: 68px;
+    height: 68px;
+    bottom: 12%;
+  }
+
+  .pitch-field {
+    width: 78%;
+    bottom: -42%;
   }
 
   .ad-banner-cta {

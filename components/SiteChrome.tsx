@@ -59,12 +59,70 @@ export function PitchBanner() {
       target="_blank"
       rel="noopener noreferrer"
     >
+      <span className="pitch-scene" aria-hidden="true">
+        <span className="pitch-sky" />
+        <span className="pitch-flood pitch-flood-a" />
+        <span className="pitch-flood pitch-flood-b" />
+        <svg className="pitch-field" viewBox="0 0 240 156">
+          <defs>
+            <pattern id="pitchStripes" width="16" height="156" patternUnits="userSpaceOnUse">
+              <rect width="8" height="156" fill="#17833c" />
+              <rect x="8" width="8" height="156" fill="#126e32" />
+            </pattern>
+            <linearGradient id="pitchEdge" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#0b4a22" />
+              <stop offset="1" stopColor="#083818" />
+            </linearGradient>
+          </defs>
+          <rect width="240" height="156" fill="url(#pitchEdge)" />
+          <rect x="18" y="12" width="204" height="132" fill="url(#pitchStripes)" />
+          <g fill="none" stroke="#f4fff4" strokeWidth="1.7">
+            <rect x="18" y="12" width="204" height="132" />
+            <path d="M120 12v132" />
+            <circle cx="120" cy="78" r="20" />
+            <rect x="18" y="36" width="36" height="84" />
+            <rect x="186" y="36" width="36" height="84" />
+            <rect x="18" y="54" width="14" height="48" />
+            <rect x="208" y="54" width="14" height="48" />
+            <path d="M18 16a8 8 0 0 1 8-8M222 16a8 8 0 0 0-8-8M18 140a8 8 0 0 0 8 8M222 140a8 8 0 0 1-8 8" />
+            <path d="M54 54a24 24 0 0 0 0 48M186 102a24 24 0 0 0 0-48" />
+            <rect x="10" y="66" width="8" height="24" />
+            <rect x="222" y="66" width="8" height="24" />
+          </g>
+          <circle cx="120" cy="78" r="2.2" fill="#f4fff4" />
+          <circle cx="46" cy="78" r="1.8" fill="#f4fff4" />
+          <circle cx="194" cy="78" r="1.8" fill="#f4fff4" />
+        </svg>
+        <svg className="pitch-ball" viewBox="0 0 128 128">
+          <defs>
+            <radialGradient id="pitchBallLit" cx="34%" cy="28%" r="72%">
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="48%" stopColor="#f2f2f2" />
+              <stop offset="100%" stopColor="#7d7d7d" />
+            </radialGradient>
+          </defs>
+          <circle cx="64" cy="64" r="60" fill="url(#pitchBallLit)" />
+          <path fill="#141414" d="M64 33.5 80.5 45.4 74.2 64.8 53.8 64.8 47.5 45.4Z" />
+          <path fill="#141414" d="M97 39.2 111 55.4 101.2 71 88.6 79.4 80.5 45.4Z" />
+          <path fill="#141414" d="M31 39.2 17 55.4 26.8 71 39.4 79.4 47.5 45.4Z" />
+          <path fill="#141414" d="M46 97 64 112.5 82 97 73.5 81 54.5 81Z" />
+          <path
+            fill="none"
+            stroke="#141414"
+            strokeWidth="2.3"
+            strokeLinejoin="round"
+            d="M64 33.5 80.5 45.4 97 39.2M80.5 45.4 74.2 64.8 88.6 79.4M74.2 64.8 53.8 64.8 39.4 79.4M53.8 64.8 47.5 45.4 31 39.2M47.5 45.4 64 33.5 64 16"
+          />
+          <circle cx="64" cy="64" r="60" fill="none" stroke="#1b1b1b" strokeWidth="3.2" />
+          <circle cx="48" cy="44" r="10" fill="#fff" opacity="0.22" />
+        </svg>
+        <span className="pitch-shade" />
+      </span>
       <span className="ad-banner-mark">פרסומת</span>
-      <span className="ad-banner-lines" aria-hidden="true" />
       <span className="ad-banner-body">
-        <span className="ad-banner-kicker">עשב מלאכותי · תאורה לילית</span>
+        <span className="ad-banner-kicker">טייבה · עשב מלאכותי · תאורה לילית</span>
         <strong>מגרש אל-איתיחאד</strong>
-        <span className="ad-banner-sub">הזמן מגרש עכשיו בטייבה</span>
+        <span className="ad-banner-sub">הזמן מגרש עכשיו · משחק גם בלילה</span>
       </span>
       <span className="ad-banner-cta">להזמנה</span>
     </a>
