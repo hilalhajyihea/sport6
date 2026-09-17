@@ -69,3 +69,41 @@ export function PitchBanner() {
     </a>
   );
 }
+
+export function CubeAds() {
+  return (
+    <aside className="ad-cubes" aria-label="פרסומות">
+      <a className="ad-cube ad-cube-law" href="https://hajyahya-law.com/" target="_blank" rel="noopener noreferrer">
+        <span className="ad-cube-mark">פרסומת</span>
+        <span className="ad-cube-kicker">משרד עורכי דין · טייבה</span>
+        <strong>חאג' יחיא ושות'</strong>
+        <span className="ad-cube-sub">לא מוותרים. משיגים תוצאות.</span>
+        <span className="ad-cube-cta">לאתר המשרד</span>
+      </a>
+      <a
+        className="ad-cube ad-cube-rakez"
+        href="https://sefer-baklik.onrender.com/rakez"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="ad-cube-mark">פרסומת</span>
+        <span className="ad-cube-kicker">עיצוב שיער · טייבה</span>
+        <strong>ראכז עיצוב שיער</strong>
+        <span className="ad-cube-sub">קביעת תור אונליין</span>
+        <span className="ad-cube-cta">לקביעת תור</span>
+      </a>
+      <a
+        className="ad-cube ad-cube-sami"
+        href="https://sefer-baklik.onrender.com/samiraffat"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span className="ad-cube-mark">פרסומת</span>
+        <span className="ad-cube-kicker">עיצוב שיער · טייבה</span>
+        <strong>Salon Sami</strong>
+        <span className="ad-cube-sub">קביעת תור אונליין</span>
+        <span className="ad-cube-cta">לקביעת תור</span>
+      </a>
+    </aside>
+  );
+}

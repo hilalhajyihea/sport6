@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArticleGrid, FeaturedStory } from "@/components/ArticleCards";
-import { OlpanBanner, PitchBanner, SiteFooter, SiteHeader } from "@/components/SiteChrome";
+import { CubeAds, OlpanBanner, PitchBanner, SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { getFeaturedArticle, listArticlesByCategory, listCategories } from "@/lib/articles";
 
 export const dynamic = "force-dynamic";
@@ -25,7 +25,7 @@ export default async function HomePage() {
           ) : (
             <div className="empty">עדיין אין כתבות. היכנסו לניהול כדי לפרסם את הכתבה הראשונה.</div>
           )}
-          <PitchBanner />
+          <CubeAds />
           {sections.map(({ category, articles }) => (
             <section className="section" key={category.id}>
               <div className="section-title">
@@ -35,6 +35,7 @@ export default async function HomePage() {
                 <Link href={`/category/${category.slug}`}>לכל הכתבות</Link>
               </div>
               <ArticleGrid articles={articles} />
+              {category.slug === "adults" ? <PitchBanner /> : null}
             </section>
           ))}
         </main>
