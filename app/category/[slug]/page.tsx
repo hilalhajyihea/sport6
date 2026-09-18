@@ -18,7 +18,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <SiteHeader current={slug} />
+      <SiteHeader />
       <main className="wrap">
         <section className="section" style={{ marginTop: 0 }}>
           <div className="section-title">

@@ -24,7 +24,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
 
   return (
     <>
-      <SiteHeader current={article.category_slug} />
+      <SiteHeader />
       <main className="wrap">
         <article className="article">
           <div className="kicker">{article.category_name}</div>

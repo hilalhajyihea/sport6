@@ -22,7 +22,7 @@ export default async function HomePage() {
 
     return (
       <>
-        <SiteHeader current="home" />
+        <SiteHeader />
         <main className="wrap">
           <OlpanBanner />
           {featured ? (
@@ -51,7 +51,7 @@ export default async function HomePage() {
   } catch {
     return (
       <>
-        <SiteHeader current="home" />
+        <SiteHeader />
         <main className="wrap">
           <div className="empty">לא הצלחנו להתחבר למסד כרגע. בדקו את החיבור ברנדר ואת המשתנה בורסל.</div>
         </main>
