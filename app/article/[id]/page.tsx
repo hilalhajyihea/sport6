@@ -1,14 +1,19 @@
 import { notFound } from "next/navigation";
 import { Comments } from "@/components/Comments";
+import { OfflineNotice } from "@/components/OfflineNotice";
 import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { getArticle } from "@/lib/articles";
 import { getSession, isAdmin } from "@/lib/auth";
 import { listComments } from "@/lib/comments";
 import { bodyToHtml, focusStyle, formatDate } from "@/lib/format";
+import { isSiteActive } from "@/lib/settings";
 
 export const dynamic = "force-dynamic";
 
 export default async function ArticlePage({ params }: { params: Promise<{ id: string }> }) {
+  if (!(await isSiteActive())) {
+    return <OfflineNotice />;
+  }
   const { id } = await params;
   const article = await getArticle(Number(id));
   if (!article) notFound();

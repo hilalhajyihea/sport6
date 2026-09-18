@@ -105,4 +105,15 @@ async function migrate() {
     )
   `;
   await sql`CREATE INDEX IF NOT EXISTS article_comments_article_idx ON article_comments (article_id, created_at)`;
+  await sql`
+    CREATE TABLE IF NOT EXISTS site_settings (
+      id INT PRIMARY KEY,
+      site_active BOOLEAN NOT NULL DEFAULT true
+    )
+  `;
+  await sql`
+    INSERT INTO site_settings (id, site_active)
+    VALUES (1, true)
+    ON CONFLICT (id) DO NOTHING
+  `;
 }

@@ -4,16 +4,21 @@ import { requireUser } from "@/lib/actions-auth";
 import { listArticlesForAdmin } from "@/lib/articles";
 import { formatDate } from "@/lib/format";
 import { isAdmin } from "@/lib/auth";
+import { isSiteActive } from "@/lib/settings";
+import { SiteStatusToggle } from "@/components/SiteStatusToggle";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminHome() {
   const user = await requireUser();
   const articles = await listArticlesForAdmin(isAdmin(user) ? undefined : user.id);
+  const siteActive = isAdmin(user) ? await isSiteActive() : true;
 
   return (
-    <div className="panel">
-      <h1>ניהול כתבות</h1>
+    <>
+      {isAdmin(user) ? <SiteStatusToggle active={siteActive} /> : null}
+      <div className="panel">
+        <h1>ניהול כתבות</h1>
       {articles.length === 0 ? <p className="empty">עדיין אין כתבות.</p> : null}
       {articles.map((article) => (
         <div className="list-row" key={article.id}>
@@ -43,6 +48,7 @@ export default async function AdminHome() {
           )}
         </div>
       ))}
-    </div>
+      </div>
+    </>
   );
 }

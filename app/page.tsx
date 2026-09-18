@@ -1,12 +1,17 @@
 import Link from "next/link";
 import { ArticleGrid, FeaturedStory } from "@/components/ArticleCards";
+import { OfflineNotice } from "@/components/OfflineNotice";
 import { ClickBanner, CubeAds, OlpanBanner, PitchBanner, SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { getFeaturedArticle, listArticlesByCategory, listCategories } from "@/lib/articles";
+import { isSiteActive } from "@/lib/settings";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   try {
+    if (!(await isSiteActive())) {
+      return <OfflineNotice />;
+    }
     const [featured, categories] = await Promise.all([getFeaturedArticle(), listCategories()]);
     const sections = await Promise.all(
       categories.map(async (category) => ({

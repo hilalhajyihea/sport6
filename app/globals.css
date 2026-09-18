@@ -563,6 +563,42 @@ img {
   color: var(--muted);
 }
 
+.offline-box {
+  background: var(--white);
+  border: 1px solid var(--line);
+  min-height: 52vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 3rem 1.2rem;
+}
+
+.offline-box h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.site-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 1rem 1.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.site-status .meta {
+  margin: 0.25rem 0 0;
+}
+
+.site-status-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .article {
   background: var(--white);
   border: 1px solid var(--line);
